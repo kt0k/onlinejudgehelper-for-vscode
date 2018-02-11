@@ -7,7 +7,10 @@ import { TestCase } from "./clients/IOnlineJudgeClient";
 export class Tester {
     public static async test(document: vscode.TextDocument, testCases: TestCase[], timeout: number, outputChannel: vscode.OutputChannel) {
         const languageId = document.languageId;
-        const compileCmd: string = vscode.workspace.getConfiguration("onlinejudgehelper-for-vscode.compileCommand")[languageId];
+        let compileCmd: string = vscode.workspace.getConfiguration("onlinejudgehelper-for-vscode.compileCommand")[languageId];
+        if (compileCmd) {
+            compileCmd = compileCmd.replace("$filename", document.fileName);
+        }
         const runCmd: string = vscode.workspace.getConfiguration("onlinejudgehelper-for-vscode.runCommand")[languageId];
         const cwd = path.dirname(document.uri.fsPath);
 
@@ -20,11 +23,13 @@ export class Tester {
 
         if (compileCmd) {
             outputChannel.appendLine("Compiling...");
-            const compileResult = await Tester.executeCommand(cwd, [compileCmd, document.fileName].join(" "));
+            const compileResult = await Tester.executeCommand(cwd, compileCmd);
             if (compileResult.exitCode || compileResult.stderr) {
                 outputChannel.appendLine("Compile Failed");
                 outputChannel.appendLine(`Exit Code: ${compileResult.exitCode}`);
-                outputChannel.appendLine("--stderr--");
+                outputChannel.appendLine("---------stdout---------");
+                outputChannel.appendLine(`${compileResult.stdout}\n`);
+                outputChannel.appendLine("---------stderr---------");
                 outputChannel.appendLine(`${compileResult.stderr}\n`);
                 return;
             }
@@ -49,13 +54,13 @@ export class Tester {
                         outputChannel.appendLine("Time Limit Exceeded");
                     } else if (result.exitCode) {
                         outputChannel.appendLine(`Error (ExitCode: ${result.exitCode})`);
-                        outputChannel.appendLine("--stderr--");
+                        outputChannel.appendLine("---------stderr---------");
                         outputChannel.appendLine(`${result.stderr}\n`);
                     } else {
                         outputChannel.appendLine("Wrong Answer");
-                        outputChannel.appendLine("--Expected--");
+                        outputChannel.appendLine("--------Expected--------");
                         outputChannel.appendLine(`${testcase.expected}`);
-                        outputChannel.appendLine("--Actual Output--");
+                        outputChannel.appendLine("-----Actual Output-----");
                         outputChannel.appendLine(`${result.stdout}`);
                     }
                 }
