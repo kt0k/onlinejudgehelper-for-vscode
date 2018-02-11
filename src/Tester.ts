@@ -7,8 +7,8 @@ import { TestCase } from "./clients/IOnlineJudgeClient";
 export class Tester {
     public static async test(document: vscode.TextDocument, testCases: TestCase[], timeout: number, outputChannel: vscode.OutputChannel) {
         const languageId = document.languageId;
-        const compileCmd: string = vscode.workspace.getConfiguration("extensions.compileCommand")[languageId];
-        const runCmd: string = vscode.workspace.getConfiguration("extensions.runCommand")[languageId];
+        const compileCmd: string = vscode.workspace.getConfiguration("onlinejudgehelper-for-vscode.compileCommand")[languageId];
+        const runCmd: string = vscode.workspace.getConfiguration("onlinejudgehelper-for-vscode.runCommand")[languageId];
         const cwd = path.dirname(document.uri.fsPath);
 
         outputChannel.clear();

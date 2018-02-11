@@ -35,7 +35,7 @@ export class AtCoderClient implements IOnlineJudgeClient {
     }
 
     public async login(): Promise<boolean> {
-        const account = vscode.workspace.getConfiguration("extensions.accountSettings").atcoder;
+        const account = vscode.workspace.getConfiguration("onlinejudgehelper-for-vscode.accountSettings").atcoder;
         const loginUrl = BaseUrl + "/login";
 
         const $: CheerioStatic = await this._client.get(loginUrl, ForParse);
