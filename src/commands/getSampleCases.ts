@@ -1,7 +1,7 @@
 import * as fs from "fs-extra";
 import * as path from "path";
 import * as vscode from "vscode";
-import { OnlineJudgeClientFactory } from "../clients/OnlineJudgeClientFactory";
+import { OnlineJudgeClient } from "../clients/OnlineJudgeClientFactory";
 
 export async function getSampleCases() {
     const url = await vscode.window.showInputBox({placeHolder: "URLを入力してください"});
@@ -10,8 +10,11 @@ export async function getSampleCases() {
         return;
     }
 
-    const client = OnlineJudgeClientFactory.createFromUrl(url);
-    await client.login();
+    const client = OnlineJudgeClient.FromUrl(url);
+    if (!client.isLoggedIn) {
+        await client.login();
+    }
+
     const task = client.getTestCases(url);
     const problemId = await client.getProblemId(url);
     const savePath = `${vscode.workspace.rootPath}/samplecases/${problemId}`;
