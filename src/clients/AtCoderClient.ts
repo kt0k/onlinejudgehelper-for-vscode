@@ -99,7 +99,6 @@ export class AtCoderClient implements IOnlineJudgeClient {
             };
         }
 
-        vscode.window.showInformationMessage(timeLimit.toString());
         return ret;
     }
 
