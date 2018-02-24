@@ -30,6 +30,12 @@
                 "title": "Test SampleCases"
             }
         ],
+        "keybindings": [
+            {
+                "command": "onlinejudgehelper-for-vscode.testSampleCases",
+                "key": "ctrl+alt+i"
+            }
+        ],
         "configuration": [
             {
                 "title": "OnlineJudgeHelper",
