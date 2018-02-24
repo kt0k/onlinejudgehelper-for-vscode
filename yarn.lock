@@ -34,9 +34,9 @@
   version "9.4.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.2.tgz#b109a6c4f64147ccf9476d9e1a6fbf69a10faeb8"
 
-"@types/node@^7.0.43":
-  version "7.0.53"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.53.tgz#3465ada7e6f0f762f761779fcb4f041e795755cd"
+"@types/node@^7.0.54":
+  version "7.0.55"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.55.tgz#7bb6215ff9425a1d714106be9f0d3e0e28829288"
 
 "@types/request-promise@^4.1.41":
   version "4.1.41"
@@ -45,7 +45,7 @@
     "@types/bluebird" "*"
     "@types/request" "*"
 
-"@types/request@*":
+"@types/request@*", "@types/request@^2.47.0":
   version "2.47.0"
   resolved "https://registry.yarnpkg.com/@types/request/-/request-2.47.0.tgz#76a666cee4cb85dcffea6cd4645227926d9e114e"
   dependencies:
@@ -1968,7 +1968,7 @@ vinyl@~2.0.1:
     remove-trailing-separator "^1.0.1"
     replace-ext "^1.0.0"
 
-vscode@^1.1.6:
+vscode@^1.1.10:
   version "1.1.10"
   resolved "https://registry.yarnpkg.com/vscode/-/vscode-1.1.10.tgz#d1cba378ab24f1d3ddf9cd470d242ee1472dd35b"
   dependencies:
