@@ -4,7 +4,7 @@ import * as vscode from "vscode";
 import { OnlineJudgeClient } from "../clients/OnlineJudgeClientFactory";
 
 export async function getSampleCases() {
-    const url = await vscode.window.showInputBox({placeHolder: "URLを入力してください"});
+    const url = await vscode.window.showInputBox({placeHolder: "URLを入力してください", ignoreFocusOut: true});
 
     if (!url) {
         return;
