@@ -21,9 +21,14 @@ export class YukiCoderClient implements IOnlineJudgeClient {
     }
 
     public async getProblemId(url: string): Promise<string> {
-        const re = new RegExp(/problems\/no\/(\d+)/);
+        const re = new RegExp(/problems\/(no\/)?(\d+)/);
         const match = url.match(re);
-        return `no-${match[1]}`;
+
+        if (match.length === 2) {
+            return `no-${match[1]}`;
+        } else {
+            return `problem-${match[2]}`;
+        }
     }
 
     public async getTestCases(url: string): Promise<any[]> {
