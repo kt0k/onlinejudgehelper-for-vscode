@@ -1,7 +1,7 @@
 import * as fs from "fs-extra";
 import * as path from "path";
 import * as vscode from "vscode";
-import { OnlineJudgeClient } from "../clients/OnlineJudgeClientFactory";
+import { OnlineJudgeClient } from "../clients/OnlineJudgeClient";
 
 export async function getSampleCases() {
     const url = await vscode.window.showInputBox({placeHolder: "URLを入力してください", ignoreFocusOut: true});
